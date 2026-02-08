@@ -1,0 +1,72 @@
+{
+  "name": "natural-voice-mcp",
+  "displayName": "Natural Voice MCP",
+  "description": "MCP server that teaches AI how humans actually write and speak. Includes AI tell detection, cognitive posture systems, and platform-specific voice guides.",
+  "version": "1.2.0",
+  "publisher": "RedRiverDesign",
+  "engines": {
+    "vscode": "^1.85.0"
+  },
+  "categories": [
+    "AI",
+    "Other"
+  ],
+  "keywords": [
+    "mcp",
+    "ai",
+    "writing",
+    "natural-language",
+    "humanize",
+    "antigravity"
+  ],
+  "icon": "natural-voice-icon.png",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/Protogenus/natural-voice-mcp"
+  },
+  "homepage": "https://github.com/Protogenus/natural-voice-mcp#readme",
+  "bugs": {
+    "url": "https://github.com/Protogenus/natural-voice-mcp/issues"
+  },
+  "main": "./out/extension.js",
+  "contributes": {
+    "commands": [
+      {
+        "command": "natural-voice-mcp.startServer",
+        "title": "Natural Voice: Start MCP Server"
+      },
+      {
+        "command": "natural-voice-mcp.detectAIPatterns",
+        "title": "Natural Voice: Detect AI Patterns in Selection"
+      }
+    ],
+    "configuration": {
+      "title": "Natural Voice MCP",
+      "properties": {
+        "natural-voice-mcp.autoStart": {
+          "type": "boolean",
+          "default": true,
+          "description": "Automatically start MCP server on extension activation"
+        }
+      }
+    }
+  },
+  "activationEvents": [
+    "onStartupFinished"
+  ],
+  "scripts": {
+    "vscode:prepublish": "npm run compile",
+    "compile": "tsc -p ./",
+    "watch": "tsc -watch -p ./",
+    "package": "vsce package"
+  },
+  "devDependencies": {
+    "@types/node": "^20.0.0",
+    "@types/vscode": "^1.85.0",
+    "typescript": "^5.0.0",
+    "@vscode/vsce": "^2.22.0"
+  },
+  "dependencies": {
+    "@modelcontextprotocol/sdk": "^0.5.0"
+  }
+}

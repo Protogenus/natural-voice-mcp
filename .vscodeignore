@@ -1,0 +1,29 @@
+# Source files (we only need compiled output)
+**/*.ts
+**/tsconfig.json
+src/
+
+# Development files
+.vscode/
+.git/
+.gitignore
+
+# Build artifacts we don't need
+**/*.map
+
+# Documentation (keep README)
+EXAMPLES.md
+QUICKSTART.md
+setup.sh
+
+# Old root-level files (MCP server is in mcp-server/)
+index.js
+resources/
+
+# Package management
+package-lock.json
+node_modules/.package-lock.json
+
+# Misc
+**/.DS_Store
+*.vsix
