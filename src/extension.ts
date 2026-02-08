@@ -177,8 +177,8 @@ function registerMcpServer(context: vscode.ExtensionContext) {
             { uri: "natural-voice://platforms/linkedin", name: "LinkedIn Voice Guide" },
         ],
         tools: [
-            { name: "detect_ai_patterns", description: "Detect AI-generated patterns in text" },
-            { name: "suggest_improvements", description: "Suggest improvements for natural voice" },
+            { name: "analyze_voice", description: "Analyze text for AI patterns and get a human-likeness score" },
+            { name: "humanize_text", description: "Get suggestions to make text sound more natural" },
         ]
     };
 

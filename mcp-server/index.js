@@ -68,33 +68,33 @@ const RESOURCES = {
 // Tool definitions
 const TOOLS = [
     {
-        name: "detect_ai_patterns",
-        description: "Detect AI-generated patterns in text and return a score",
+        name: "analyze_voice",
+        description: "Analyze text for AI patterns and return a human-likeness score (0-100)",
         inputSchema: {
             type: "object",
             properties: {
                 text: {
                     type: "string",
-                    description: "The text to analyze for AI patterns",
+                    description: "The text to analyze",
                 },
             },
             required: ["text"],
         },
     },
     {
-        name: "suggest_improvements",
-        description: "Suggest specific improvements to make text sound more natural",
+        name: "humanize_text",
+        description: "Get suggestions to make text sound more natural and human",
         inputSchema: {
             type: "object",
             properties: {
                 text: {
                     type: "string",
-                    description: "The text to improve",
+                    description: "The text to humanize",
                 },
                 platform: {
                     type: "string",
-                    enum: ["twitter", "linkedin", "reddit", "general"],
-                    description: "Target platform for optimization",
+                    enum: ["twitter", "linkedin", "reddit", "facebook", "general"],
+                    description: "Target platform (optional)",
                 },
             },
             required: ["text"],
@@ -153,7 +153,7 @@ server.setRequestHandler(ListToolsRequestSchema, async () => {
 server.setRequestHandler(CallToolRequestSchema, async (request) => {
     const toolName = request.params.name;
 
-    if (toolName === "detect_ai_patterns") {
+    if (toolName === "analyze_voice") {
         const text = request.params.arguments.text;
         const patterns = detectAIPatterns(text);
 
@@ -167,7 +167,7 @@ server.setRequestHandler(CallToolRequestSchema, async (request) => {
         };
     }
 
-    if (toolName === "suggest_improvements") {
+    if (toolName === "humanize_text") {
         const text = request.params.arguments.text;
         const platform = request.params.arguments.platform || "general";
         const suggestions = suggestImprovements(text, platform);
