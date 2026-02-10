@@ -2,7 +2,7 @@
   "name": "natural-voice-mcp",
   "displayName": "Natural Voice MCP",
   "description": "MCP server that teaches AI how humans actually write and speak. Includes AI tell detection, cognitive posture systems, and platform-specific voice guides.",
-  "version": "1.3.0",
+  "version": "1.4.0",
   "publisher": "RedRiverDesign",
   "engines": {
     "vscode": "^1.85.0"
@@ -30,6 +30,12 @@
   },
   "main": "./out/extension.js",
   "contributes": {
+    "mcpServerDefinitionProviders": [
+      {
+        "id": "natural-voice-mcp.servers",
+        "label": "Natural Voice MCP"
+      }
+    ],
     "commands": [
       {
         "command": "natural-voice-mcp.startServer",

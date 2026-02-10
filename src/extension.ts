@@ -164,26 +164,24 @@ function detectAIPatterns(text: string): { ai_tells: string[], issues: string[],
 }
 
 function registerMcpServer(context: vscode.ExtensionContext) {
-    // This creates the MCP server configuration for Antigravity
-    const mcpConfig = {
-        name: "natural-voice",
-        command: "node",
-        args: [path.join(context.extensionPath, 'mcp-server', 'index.js')],
-        resources: [
-            { uri: "natural-voice://patterns/conversational", name: "Conversational Patterns" },
-            { uri: "natural-voice://anti-patterns/ai-tells", name: "AI Tell Anti-Patterns" },
-            { uri: "natural-voice://systems/cognitive-posture", name: "Cognitive Posture Engine" },
-            { uri: "natural-voice://platforms/twitter", name: "Twitter Voice Guide" },
-            { uri: "natural-voice://platforms/linkedin", name: "LinkedIn Voice Guide" },
-        ],
-        tools: [
-            { name: "analyze_voice", description: "Analyze text for AI patterns and get a human-likeness score" },
-            { name: "humanize_text", description: "Get suggestions to make text sound more natural" },
-        ]
-    };
+    const serverPath = path.join(context.extensionPath, 'mcp-server', 'index.js');
 
-    // Store for extension API access
-    (context as any).mcpServerConfig = mcpConfig;
+    const provider = vscode.lm.registerMcpServerDefinitionProvider(
+        'natural-voice-mcp.servers',
+        {
+            provideMcpServerDefinitions: () => {
+                return [
+                    new vscode.McpStdioServerDefinition(
+                        'Natural Voice MCP',
+                        process.execPath,
+                        [serverPath]
+                    )
+                ];
+            }
+        }
+    );
+
+    context.subscriptions.push(provider);
 }
 
 export function deactivate() {
